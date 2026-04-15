@@ -8,7 +8,7 @@ import Image from "next/image";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const active = ["bg-green-800", "text-white"]
+  const active = ["bg-emerald-900", "text-white"]
   return (
     <div className="navbar flex-col lg:flex-row bg-base-100 shadow-sm sticky top-0 z-50 px-4 lg:px-20">
       <div className="flex-1">
