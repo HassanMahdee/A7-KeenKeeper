@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Alex Johnson",
+    "picture": "https://picsum.photos/id/64/200/200",
+    "email": "alex.johnson@example.com",
+    "days_since_contact": 8,
+    "status": "on-track",
+    "tags": ["work", "coffee buddy"],
+    "bio": "We worked together at the design agency. Always shares great book recommendations.",
+    "goal": 14,
+    "next_due_date": "2026-04-22"
+  },
+  {
+    "id": 2,
+    "name": "Maria Garcia",
+    "picture": "https://picsum.photos/id/26/200/200",
+    "email": "maria.garcia@example.com",
+    "days_since_contact": 18,
+    "status": "almost due",
+    "tags": ["college", "close friend"],
+    "bio": "College roommate turned lifelong friend. Loves hiking and trying new restaurants.",
+    "goal": 14,
+    "next_due_date": "2026-04-10"
+  },
+  {
+    "id": 3,
+    "name": "James Smith",
+    "picture": "https://picsum.photos/id/91/200/200",
+    "email": "james.smith@example.com",
+    "days_since_contact": 32,
+    "status": "overdue",
+    "tags": ["family", "childhood"],
+    "bio": "My cousin. We grew up together playing soccer. Now he lives in another state.",
+    "goal": 21,
+    "next_due_date": "2026-03-25"
+  },
+  {
+    "id": 4,
+    "name": "Linda Chen",
+    "picture": "https://picsum.photos/id/29/200/200",
+    "email": "linda.chen@example.com",
+    "days_since_contact": 5,
+    "status": "on-track",
+    "tags": ["yoga", "mentor"],
+    "bio": "My yoga instructor and mentor. She gives the best life advice.",
+    "goal": 10,
+    "next_due_date": "2026-04-19"
+  },
+  {
+    "id": 5,
+    "name": "David Kim",
+    "picture": "https://picsum.photos/id/155/200/200",
+    "email": "david.kim@example.com",
+    "days_since_contact": 23,
+    "status": "overdue",
+    "tags": ["university", "gaming"],
+    "bio": "Met in computer science class. We still play online games every few months.",
+    "goal": 14,
+    "next_due_date": "2026-04-05"
+  },
+  {
+    "id": 6,
+    "name": "Sarah O'Connor",
+    "picture": "https://picsum.photos/id/96/200/200",
+    "email": "sarah.oconnor@example.com",
+    "days_since_contact": 12,
+    "status": "on-track",
+    "tags": ["book club", "creative"],
+    "bio": "Partner in crime for every creative project. We co-write short stories.",
+    "goal": 14,
+    "next_due_date": "2026-04-16"
+  },
+  {
+    "id": 7,
+    "name": "Michael Brown",
+    "picture": "https://picsum.photos/id/12/200/200",
+    "email": "michael.brown@example.com",
+    "days_since_contact": 9,
+    "status": "on-track",
+    "tags": ["gym", "workout"],
+    "bio": "My gym partner. He pushes me to hit new PRs every week.",
+    "goal": 7,
+    "next_due_date": "2026-04-21"
+  },
+  {
+    "id": 8,
+    "name": "Emily Davis",
+    "picture": "https://picsum.photos/id/20/200/200",
+    "email": "emily.davis@example.com",
+    "days_since_contact": 16,
+    "status": "almost due",
+    "tags": ["art", "museum"],
+    "bio": "Art history nerd. We visit every new exhibition in town together.",
+    "goal": 14,
+    "next_due_date": "2026-04-12"
+  },
+  {
+    "id": 9,
+    "name": "Chris Lee",
+    "picture": "https://picsum.photos/id/30/200/200",
+    "email": "chris.lee@example.com",
+    "days_since_contact": 45,
+    "status": "overdue",
+    "tags": ["travel", "adventure"],
+    "bio": "Backpacked through Europe with him. Lives abroad now, but we try to video call.",
+    "goal": 30,
+    "next_due_date": "2026-03-10"
+  },
+  {
+    "id": 10,
+    "name": "Priya Patel",
+    "picture": "https://picsum.photos/id/42/200/200",
+    "email": "priya.patel@example.com",
+    "days_since_contact": 3,
+    "status": "on-track",
+    "tags": ["cooking", "neighbor"],
+    "bio": "My neighbor who shares amazing homemade food. We exchange recipes weekly.",
+    "goal": 7,
+    "next_due_date": "2026-04-25"
+  }
+]

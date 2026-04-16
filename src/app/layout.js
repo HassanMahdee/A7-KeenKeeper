@@ -2,7 +2,6 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-
 const geist = Geist({
   subsets: ["latin"],
 });
