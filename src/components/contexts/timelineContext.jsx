@@ -4,8 +4,11 @@ import { createContext, useState, useEffect, useContext } from "react";
 const TimelineContext = createContext();
 export default function TimelineProvider({ children }) {
   const [entries, setEntries] = useState(() => {
-    const savedEntries = localStorage.getItem("Timeline Entries");
-    return savedEntries ? JSON.parse(savedEntries) : [];
+    if (typeof window !== "undefined") {
+      const savedEntries = localStorage.getItem("Timeline Entries");
+      return savedEntries ? JSON.parse(savedEntries) : [];
+    }
+    return [];
   });
   useEffect(() => {
     localStorage.setItem("Timeline Entries", JSON.stringify(entries));
@@ -17,9 +20,10 @@ export default function TimelineProvider({ children }) {
         type,
         friendId,
         friendName,
-        timestamp: new Date().toISOString(),
+        timestamp: new Date().toLocaleString(),
       },
-      ...prev]);
+      ...prev,
+    ]);
   };
   return (
     <TimelineContext.Provider value={{ entries, setEntries, addEntry }}>

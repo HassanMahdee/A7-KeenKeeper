@@ -108,15 +108,15 @@ export default function FriendDetail() {
             Quick Check-in
           </h4>
           <div className="flex justify-between gap-4">
-            <button onClick={() => addEntry("call", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
+            <button onClick={() => addEntry("Audio Call", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><TbPhoneCall /></span>
               Call
             </button>
-            <button onClick={() => addEntry("text", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
+            <button onClick={() => addEntry("Text", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><BsChatSquareText /></span>
               Text
             </button>
-            <button onClick={() => addEntry("video", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
+            <button onClick={() => addEntry("Video Call", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><FiVideo /></span>
               Video
             </button>
