@@ -1,0 +1,30 @@
+"use client";
+import { createContext, useState, useEffect, useContext } from "react";
+
+const TimelineContext = createContext();
+export default function TimelineProvider({ children }) {
+  const [entries, setEntries] = useState(() => {
+    const savedEntries = localStorage.getItem("Timeline Entries");
+    return savedEntries ? JSON.parse(savedEntries) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("Timeline Entries", JSON.stringify(entries));
+  }, [entries]);
+  const addEntry = (type, friendId, friendName) => {
+    setEntries((prev) => [
+      {
+        id: crypto.randomUUID(),
+        type,
+        friendId,
+        friendName,
+        timestamp: new Date().toISOString(),
+      },
+      ...prev]);
+  };
+  return (
+    <TimelineContext.Provider value={{ entries, setEntries, addEntry }}>
+      {children}
+    </TimelineContext.Provider>
+  );
+}
+export const useTimeline = () => useContext(TimelineContext);

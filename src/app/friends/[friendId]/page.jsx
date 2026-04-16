@@ -1,3 +1,4 @@
+"use client";
 import friendsData from "@/data/friendListData.json";
 import Image from "next/image";
 import { TbAlarmSnooze } from "react-icons/tb";
@@ -6,19 +7,22 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { TbPhoneCall } from "react-icons/tb";
 import { BsChatSquareText } from "react-icons/bs";
 import { FiVideo } from "react-icons/fi";
+import { useTimeline } from "@/components/contexts/timelineContext";
+import { useParams } from "next/navigation";
 
-export default async function FriendDetail({ params }) {
-  const { friendId } = await params;
+export default function FriendDetail() {
+  const { friendId } = useParams();
   const friend = friendsData.find((f) => f.id === parseInt(friendId));
   const statusBadge = {
     "on-track": "bg-green-900",
     overdue: "bg-red-500",
     "almost due": "bg-yellow-500",
   };
+  const { addEntry } = useTimeline();
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-8 lg:px-60 py-4 lg:py-20 bg-base-200">
       <div className="flex flex-col gap-3 col-span-1">
-        <div className="flex flex-col items-center gap-3 bg-base-100 rounded-lg p-4 shadow-md">
+        <div className="flex flex-col items-center gap-3 bg-base-100 rounded-lg px-3 py-4 shadow-md">
           <Image
             src={friend.picture}
             alt={friend.name}
@@ -104,15 +108,15 @@ export default async function FriendDetail({ params }) {
             Quick Check-in
           </h4>
           <div className="flex justify-between gap-4">
-            <button className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg">
+            <button onClick={() => addEntry("call", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><TbPhoneCall /></span>
               Call
             </button>
-            <button className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg">
+            <button onClick={() => addEntry("text", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><BsChatSquareText /></span>
               Text
             </button>
-            <button className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg">
+            <button onClick={() => addEntry("video", friendId, friend.name)} className="w-full bg-base-200 flex flex-col items-center justify-center gap-2 border border-base-300 py-10 rounded-lg cursor-pointer hover:bg-base-300">
               <span className="text-2xl"><FiVideo /></span>
               Video
             </button>

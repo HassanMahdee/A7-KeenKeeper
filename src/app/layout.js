@@ -2,6 +2,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
+import TimelineProvider from "@/components/contexts/timelineContext";
 const geist = Geist({
   subsets: ["latin"],
 });
@@ -20,7 +21,11 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        <main>{children}</main>
+        <main>
+          <TimelineProvider>
+            {children}
+          </TimelineProvider>
+        </main>
         <Footer />
       </body>
     </html>
