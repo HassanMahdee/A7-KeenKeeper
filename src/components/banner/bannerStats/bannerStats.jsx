@@ -1,11 +1,20 @@
+"use client";
 import friendsData from "@/data/friendListData.json";
+import { useTimeline } from "@/components/contexts/timelineContext";
 export default function BannerStats() {
+  const { entries } = useTimeline();
+  const thisMonth = new Date().getMonth();
+  const monthCount = entries.filter((e) => {
+    const d = new Date(e.timestamp);
+    return d.getMonth() === thisMonth;
+  }).length;
   const onTrackFriends = friendsData.filter(
     (friend) => friend.status === "on-track",
   );
   const overdueFriends = friendsData.filter(
     (friend) => friend.status === "overdue",
   );
+  console.log(monthCount);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 my-8 justify-center items-center">
       <div className="h-32 w-64 mx-auto flex flex-col items-center justify-center bg-base-100 rounded-lg shadow-sm">
@@ -27,7 +36,7 @@ export default function BannerStats() {
         <p className="font-light text-gray-500">Need Attention</p>
       </div>
       <div className="h-32 w-64 mx-auto flex flex-col items-center justify-center bg-base-100 rounded-lg shadow-sm">
-        <h4 className="text-2xl font-bold text-emerald-900">0</h4>
+        <h4 className="text-2xl font-bold text-emerald-900">{monthCount}</h4>
         <p className="font-light text-gray-500">Interactions This Month</p>
       </div>
     </div>
