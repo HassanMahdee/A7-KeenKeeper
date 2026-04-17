@@ -6,58 +6,89 @@ import Image from "next/image";
 export default function Timeline() {
   const { entries } = useTimeline();
   const [criteria, setCriteria] = useState("All Interactions");
+  const [toggleSortOrder, setToggleSortOrder] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
   const filteredEntries = entries.filter((entry) => {
     if (criteria === "All Interactions") {
       return true;
     }
     return entry.type === criteria;
   });
-  console.log("entries", entries);
-  console.log("criteria", criteria);
-  console.log("filteredEntries", filteredEntries);
   const menuText =
     criteria === "All Interactions" ? "All Interactions" : criteria;
   const handleFilter = (filter) => {
     setCriteria(filter);
   };
+  const sortedEntries = [...filteredEntries].sort((a, b) => {
+    const dateA = new Date(a.timestamp);
+    const dateB = new Date(b.timestamp);
+    return toggleSortOrder ? dateB - dateA : dateA - dateB;
+  });
+  const searchedName = sortedEntries.filter((entry) =>
+    entry.friendName.toLowerCase().includes(searchInput.toLowerCase()),
+  );
   return (
     <div className="px-8 lg:px-60 py-4 lg:py-20 bg-base-200">
-      <div>
-        <h1 className="text-2xl font-bold text-emerald-900">Timeline</h1>
-        <div className="dropdown dropdown-start dropdown-right">
+      <h1 className="text-2xl font-bold text-emerald-900">Timeline</h1>
+      <div className="flex justify-between items-center">
+        <div>
           <button
-            tabIndex={0}
-            className="btn m-4 bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
+            onClick={() => setToggleSortOrder(!toggleSortOrder)}
+            className="btn shadow-sm bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
           >
-            {menuText}
+            {toggleSortOrder ? "↑" : "↓"}
           </button>
-          <ul
-            tabIndex={-1}
-            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-          >
-            <li>
-              <button onClick={() => handleFilter("All Interactions")}>
-                All Interactions
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleFilter("Audio Call")}>
-                Audio Call
-              </button>
-            </li>
-            <li>
-              <button onClick={() => handleFilter("Text")}>Text</button>
-            </li>
-            <li>
-              <button onClick={() => handleFilter("Video Call")}>
-                Video Call
-              </button>
-            </li>
-          </ul>
+          <div className="dropdown dropdown-start dropdown-right">
+            <button
+              tabIndex={0}
+              className="btn m-4 shadow-sm bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
+            >
+              {menuText}
+            </button>
+            <ul
+              tabIndex={-1}
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+            >
+              <li>
+                <button onClick={() => handleFilter("All Interactions")}>
+                  All Interactions
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleFilter("Audio Call")}>
+                  Audio Call
+                </button>
+              </li>
+              <li>
+                <button onClick={() => handleFilter("Text")}>Text</button>
+              </li>
+              <li>
+                <button onClick={() => handleFilter("Video Call")}>
+                  Video Call
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            onChange={(e) => setSearchInput(e.target.value)}
+            type="text"
+            placeholder="Search by name"
+            className="input input-bordered w-full max-w-xs"
+          />
+          {searchInput && (
+            <button
+              onClick={() => setSearchInput("")}
+              className="btn btn-xs btn-ghost "
+            >
+              ✕
+            </button>
+          )}
         </div>
       </div>
-      {filteredEntries.length > 0 ? (
-        filteredEntries.map((entry) => (
+      {searchedName.length > 0 ? (
+        searchedName.map((entry) => (
           <div
             key={entry.id}
             className="bg-base-100 rounded-lg p-4 mb-4 flex gap-4 items-center shadow-sm hover:scale-101 transition-transform hover:bg-base-200"
