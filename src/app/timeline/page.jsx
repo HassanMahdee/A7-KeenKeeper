@@ -17,40 +17,46 @@ export default function Timeline() {
   console.log("filteredEntries", filteredEntries);
   const menuText =
     criteria === "All Interactions" ? "All Interactions" : criteria;
-
+  const handleFilter = (filter) => {
+    setCriteria(filter);
+  };
   return (
     <div className="px-8 lg:px-60 py-4 lg:py-20 bg-base-200">
       <div>
         <h1 className="text-2xl font-bold text-emerald-900">Timeline</h1>
         <div className="dropdown dropdown-start dropdown-right">
-          <div
+          <button
             tabIndex={0}
-            role="button"
             className="btn m-4 bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
           >
             {menuText}
-          </div>
+          </button>
           <ul
-            tabIndex={0}
+            tabIndex={-1}
             className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
           >
             <li>
-              <button onClick={() => setCriteria("Audio Call")}>
+              <button onClick={() => handleFilter("All Interactions")}>
+                All Interactions
+              </button>
+            </li>
+            <li>
+              <button onClick={() => handleFilter("Audio Call")}>
                 Audio Call
               </button>
             </li>
             <li>
-              <button onClick={() => setCriteria("Text")}>Text</button>
+              <button onClick={() => handleFilter("Text")}>Text</button>
             </li>
             <li>
-              <button onClick={() => setCriteria("Video Call")}>
+              <button onClick={() => handleFilter("Video Call")}>
                 Video Call
               </button>
             </li>
           </ul>
         </div>
       </div>
-      {filteredEntries ? (
+      {filteredEntries.length > 0 ? (
         filteredEntries.map((entry) => (
           <div
             key={entry.id}
@@ -93,7 +99,7 @@ export default function Timeline() {
           </div>
         ))
       ) : (
-        <div className="bg-base-100 rounded-lg p-4 mb-4 flex gap-4 items-center shadow-sm">
+        <div className="bg-base-100 rounded-lg p-4 mb-4 flex gap-4 justify-center shadow-sm">
           <p className="text-gray-600 text-center">
             No entries found, Go make some calls!
           </p>
