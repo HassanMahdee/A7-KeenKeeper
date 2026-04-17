@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useState, useEffect, useContext } from "react";
-
+import { toast } from "react-toastify";
 const TimelineContext = createContext();
 export default function TimelineProvider({ children }) {
   const [entries, setEntries] = useState(() => {
@@ -20,11 +20,13 @@ export default function TimelineProvider({ children }) {
         type,
         friendId,
         friendName,
-        timestamp: new Date().toLocaleString(),
+        timestamp: new Date().toISOString(),
       },
       ...prev,
     ]);
+    toast.success(`${type} to ${friendName} added to timeline!`);
   };
+
   return (
     <TimelineContext.Provider value={{ entries, setEntries, addEntry }}>
       {children}
