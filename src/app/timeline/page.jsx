@@ -30,8 +30,8 @@ export default function Timeline() {
   return (
     <div className="px-8 lg:px-60 py-4 lg:py-20 bg-base-200">
       <h1 className="text-2xl font-bold text-emerald-900">Timeline</h1>
-      <div className="flex justify-between items-center">
-        <div>
+      <div className="flex flex-wrap justify-between items-center w-full my-2">
+        <div className="flex justify-between items-center gap-2 my-2">
           <button
             onClick={() => setToggleSortOrder(!toggleSortOrder)}
             className="btn shadow-sm bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
@@ -41,7 +41,7 @@ export default function Timeline() {
           <div className="dropdown dropdown-start dropdown-right">
             <button
               tabIndex={0}
-              className="btn m-4 shadow-sm bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
+              className="btn shadow-sm bg-base-100 hover:bg-base-200 hover:scale-105 transition-transform"
             >
               {menuText}
             </button>
@@ -70,16 +70,19 @@ export default function Timeline() {
             </ul>
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 justify-end w-full">
           <input
             onChange={(e) => setSearchInput(e.target.value)}
             type="text"
             placeholder="Search by name"
-            className="input input-bordered w-full max-w-xs"
+            value={searchInput}
+            className="input input-bordered w-full"
           />
           {searchInput && (
             <button
-              onClick={() => setSearchInput("")}
+              onClick={() => {
+                setSearchInput("");
+              }}
               className="btn btn-xs btn-ghost "
             >
               ✕
