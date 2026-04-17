@@ -2,9 +2,11 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
+import Loading from "./loading";
 import TimelineProvider from "@/components/contexts/timelineContext";
 import { ToastContainer } from "react-toastify";
 import { Flip } from "react-toastify";
+import { Suspense } from "react";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -26,7 +28,9 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main>
-          <TimelineProvider>{children}</TimelineProvider>
+          <TimelineProvider>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </TimelineProvider>
         </main>
         <Footer />
         <ToastContainer

@@ -16,7 +16,7 @@ export default function BannerStats() {
   );
   console.log(monthCount);
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 my-8 justify-center items-center">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 my-8 justify-center items-center">
       <div className="h-32 w-64 mx-auto flex flex-col items-center justify-center bg-base-100 rounded-lg shadow-sm">
         <h4 className="text-2xl font-bold text-emerald-900">
           {friendsData.length}
